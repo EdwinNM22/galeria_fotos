@@ -13,4 +13,8 @@ public class fotoController {
 
         return "fotos/show";
     }
+
+    @GetMapping("/create")
+    public String create() {
+    return "fotos/create";}
 }
