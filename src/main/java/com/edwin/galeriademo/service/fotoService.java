@@ -2,6 +2,7 @@ package com.edwin.galeriademo.service;
 
 import com.edwin.galeriademo.model.foto;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface fotoService {
@@ -9,4 +10,8 @@ public interface fotoService {
     public Optional<foto> get(Integer id);
     public void update(foto foto);
     public void delete(foto foto);
+    public List<foto> findAll();
+
 }
+
+

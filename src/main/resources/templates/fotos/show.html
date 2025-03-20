@@ -53,9 +53,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td ></td>
-        <td ></td>
+      <tr th:each ="foto:${fotos}">
+        <td th:text = "${foto.nombre}"></td>
+        <td th:text = "${foto.descripcion}"></td>
         <td ></td>
         <td ></td>
         <td><a  class="btn btn-warning" href="">Editar</a> </td>

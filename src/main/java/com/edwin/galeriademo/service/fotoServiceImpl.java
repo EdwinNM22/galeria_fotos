@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 @Service
 public class fotoServiceImpl implements fotoService{
@@ -33,5 +34,10 @@ public class fotoServiceImpl implements fotoService{
     public void delete(foto foto) {
         fotoRepository.deleteById(foto.getId());
 
+    }
+
+    @Override
+    public List<foto> findAll() {
+        return fotoRepository.findAll();
     }
 }
