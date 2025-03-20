@@ -55,26 +55,22 @@ public class fotoController {
         return "redirect:/fotos/";
     }
     @GetMapping("/edit/{id}")
-    public String edit(@PathVariable Integer id) {
+    public String edit(@PathVariable Integer id, Model model) {
         foto foto=new foto();
         Optional<foto> optionalFoto=fotoService.get(id);
 
         LOGGER.info("search foto: {}", optionalFoto);
+        model.addAttribute("foto", foto);
+
          return "fotos/edit";
     }
 
-    @PostMapping("/update")
-    public String update(foto foto, @RequestParam("img") MultipartFile file) throws IOException {
-        fotoService.update(foto);
 
-        if (file.isEmpty()) {
-            foto p= new foto();
-            p = fotoService.get(foto.getId()).get();
-            foto.setImagen(p.getImagen());
-        }else{
-            String nombrefoto = upload.saveImage(file);
-            foto.setImagen(nombrefoto);
-        }
+
+
+    @PostMapping("/update")
+    public String update(foto foto) {
+        fotoService.update(foto);
         return "redirect:/fotos/";
     }
 
