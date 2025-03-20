@@ -20,8 +20,6 @@ public class Uploadfoto {
             Files.write(path, bytes);
             return file.getOriginalFilename();
         }
-
-
         return "default.jpg";
     }
 
