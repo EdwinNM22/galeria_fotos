@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/fotos")
@@ -48,11 +49,18 @@ public class fotoController {
             foto.setImagen(nombrefoto);
         } else{
 
-
         }
 
         fotoService.save(foto);
         return "redirect:/fotos/";
+    }
+    @GetMapping("/edit/{id}")
+    public String edit(@PathVariable Integer id) {
+        foto foto=new foto();
+        Optional<foto> optionalFoto=fotoService.get(id);
+
+        LOGGER.info("search foto: {}", optionalFoto);
+         return "fotos/edit";
     }
 
     @PostMapping("/update")
@@ -70,9 +78,5 @@ public class fotoController {
         return "redirect:/fotos/";
     }
 
-    @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Integer id) {
-        fotoService.delete(id);
-        return "redirect:/fotos/";
-    }
+
 }
