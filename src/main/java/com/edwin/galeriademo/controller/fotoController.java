@@ -74,5 +74,10 @@ public class fotoController {
         return "redirect:/fotos/";
     }
 
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id) {
+        fotoService.delete(id);
+        return "redirect:/fotos/";
+    }
 
 }

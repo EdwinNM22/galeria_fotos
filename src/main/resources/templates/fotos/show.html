@@ -102,7 +102,7 @@
           <td th:text="${foto.nombre}"></td>
           <td th:text="${foto.descripcion}"></td>
           <td><a class="btn btn-warning" th:href="@{fotos/edit/{id} (id = ${foto.id})}"><i class="fas fa-edit"></i> Editar</a></td>
-          <td><a class="btn btn-danger" href=""><i class="fas fa-trash"></i> Eliminar</a></td>
+          <td><a class="btn btn-danger" th:href="@{fotos/delete/{id} (id = ${foto.id})}"></i> Eliminar</a></td>
         </tr>
         </tbody>
       </table>

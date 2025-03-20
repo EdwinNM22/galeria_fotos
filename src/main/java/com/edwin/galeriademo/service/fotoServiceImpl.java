@@ -31,8 +31,8 @@ public class fotoServiceImpl implements fotoService{
     }
 
     @Override
-    public void delete(foto foto) {
-        fotoRepository.deleteById(foto.getId());
+    public void delete(Integer id) {
+        fotoRepository.deleteById(id);
 
     }
 
