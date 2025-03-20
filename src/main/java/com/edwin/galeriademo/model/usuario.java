@@ -11,7 +11,7 @@ public class usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
-    private String tipo;
+    private String tipo_usuario;
     private String password;
 
     @OneToMany(mappedBy = "usuario")
@@ -21,10 +21,10 @@ public class usuario {
 
     }
 
-    public usuario(Integer id, String nombre, String tipo, String password) {
+    public usuario(Integer id, String nombre, String tipo_usuario, String password) {
         this.id = id;
         this.nombre = nombre;
-        this.tipo = tipo;
+        this.tipo_usuario = tipo_usuario;
         this.password = password;
     }
 
@@ -53,11 +53,11 @@ public class usuario {
     }
 
     public String getTipo() {
-        return tipo;
+        return tipo_usuario;
     }
 
     public void setTipo(String tipo) {
-        this.tipo = tipo;
+        this.tipo_usuario = tipo_usuario;
     }
 
     public String getPassword() {
@@ -73,7 +73,7 @@ public class usuario {
         return "usuario{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
-                ", tipo='" + tipo + '\'' +
+                ", tipo='" + tipo_usuario + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }
