@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Crear Álbum</title>
+  <title>Ver Álbumes</title>
 
   <!-- Bootstrap core CSS -->
   <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
@@ -76,34 +76,36 @@
 
   <!-- Page Heading/Breadcrumbs -->
   <h1 class="mt-4 mb-3">
-    Crear un nuevo Álbum
+    Ver Álbumes
   </h1>
 
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-    <li class="breadcrumb-item active">Crear Álbum</li>
+    <li class="breadcrumb-item active">Ver Álbumes</li>
   </ol>
 
-  <h2>Formulario para crear un nuevo Álbum</h2>
-
-  <!-- Formulario para crear un nuevo álbum -->
+  <a class="btn btn-primary mb-4" th:href="@{/albumes/create}">Agregar un nuevo álbum</a>
+  <h2>Álbumes</h2>
   <div class="card">
     <div class="card-body">
-      <form th:action="@{/albums/save}" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-          <label for="nombre">Nombre del Álbum</label>
-          <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingresa el nombre del álbum" required>
-        </div>
-        <div class="form-group">
-          <label for="descripcion">Descripción</label>
-          <textarea class="form-control" id="descripcion" name="descripcion" rows="3" placeholder="Escribe una breve descripción del álbum" required></textarea>
-        </div>
-        <div class="form-group">
-          <label for="imagen">Imagen del Álbum</label>
-          <input type="file" class="form-control-file" id="imagen" name="imagen" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Crear Álbum</button>
-      </form>
+      <table class="table table-striped table-bordered table-hover">
+        <thead>
+        <tr>
+          <th scope="col">Nombre</th>
+          <th scope="col">Descripción</th>
+          <th scope="col">Acción</th>
+          <th scope="col">Acción</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="album:${albumes}">
+          <td th:text="${album.nombre}"></td>
+          <td th:text="${album.descripcion}"></td>
+          <td><a class="btn btn-warning" th:href="@{/albumes/edit/{id} (id = ${album.id})}"><i class="fas fa-edit"></i> Editar</a></td>
+          <td><a class="btn btn-danger" th:href="@{/albumes/delete/{id} (id = ${album.id})}"><i class="fas fa-trash"></i> Eliminar</a></td>
+        </tr>
+        </tbody>
+      </table>
     </div>
   </div>
 
