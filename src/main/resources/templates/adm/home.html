@@ -14,39 +14,78 @@
   <!-- Custom styles for this template -->
   <link th:href="@{css/heroic-features.css}" rel="stylesheet">
   <style>
-    .card-img-top {
-      height: 200px;
-      object-fit: cover;
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f7fa;
+      margin: 0;
+      padding: 0;
     }
 
-    .card-body {
-      padding: 1.5rem;
-    }
 
-    .card-footer {
-      text-align: center;
-    }
-
+    /* Jumbotron Styles */
     .jumbotron {
       background-color: #f8f9fa;
-      padding: 2rem;
+      padding: 3rem;
       text-align: center;
+      border-radius: 10px;
+      margin-bottom: 2rem;
     }
 
     .jumbotron h1 {
-      font-size: 2.5rem;
+      font-size: 3rem;
       font-weight: bold;
+      color: #343a40;
     }
 
-    .btn-success {
-      background-color: #28a745;
-      border-color: #28a745;
+    .jumbotron p {
+      font-size: 1.25rem;
+      color: #6c757d;
     }
 
-    .btn-success:hover {
-      background-color: #218838;
-      border-color: #1e7e34;
+    /* Album Card Styles */
+    .album-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
     }
+
+    .album-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .album-card h2 {
+      font-size: 1.8rem;
+      color: #343a40;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+
+    .album-card a {
+      text-decoration: none;
+      color: #28a745;
+      font-weight: bold;
+      font-size: 1.1rem;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+
+    .album-card a:hover {
+      color: #218838;
+    }
+
+    .album-card p {
+      font-size: 1rem;
+      color: #6c757d;
+      margin-bottom: 1rem;
+    }
+
+
+
   </style>
 
 </head>
@@ -55,6 +94,7 @@
 
 <!-- Navigation -->
 <div th:include="adm/template_admin.html::header"></div>
+
 
 <!-- Page Content -->
 <div class="container">
@@ -65,13 +105,14 @@
     <p class="lead">Guarda y disfruta de tus fotos cuando quieras y donde quieras.</p>
   </header>
 
-
   <!-- Page Features -->
   <div class="row text-center">
-
-    <div th:each="album : ${albumes}">
-      <h2 th:text="${album.nombre}">Nombre del Álbum</h2>
-      <a th:href="@{/albumes/{id}(id=${album.id})}">Ver Álbum</a>
+    <div th:each="album : ${albumes}" class="col-md-4">
+      <div class="album-card">
+        <h2 th:text="${album.nombre}">Nombre del Álbum</h2>
+        <p>Este es un breve resumen del álbum.</p>
+        <a th:href="@{/albumes/{id}(id=${album.id})}">Ver Álbum</a>
+      </div>
     </div>
   </div>
   <!-- /.row -->
