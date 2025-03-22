@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/administrador")
-public class administradorController {
+@RequestMapping("/adm")
+public class admController {
 
     @Autowired
     private fotoService fotoService;
@@ -23,7 +23,7 @@ public class administradorController {
 
         List<foto> fotos = fotoService.findAll();
         model.addAttribute("fotos", fotos);
-        return "administrador/home";
+        return "adm/home";
 
     }
 }

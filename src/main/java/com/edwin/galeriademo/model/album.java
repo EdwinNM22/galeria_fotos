@@ -1,36 +1,30 @@
 package com.edwin.galeriademo.model;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
-@Table(name = "fotos")
-public class foto {
+@Table(name = "albumes")
+public class album {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String descripcion;
-    private String imagen;
 
-    @ManyToOne
+    @ManyToMany(cascade = CascadeType.ALL)  // Agregado CascadeType.ALL
+    @JoinTable(
+            name = "album_foto",
+            joinColumns = @JoinColumn(name = "album_id"),
+            inverseJoinColumns = @JoinColumn(name = "foto_id")
+    )
+    private List<foto> fotos;
+
+    @ManyToOne(cascade = CascadeType.ALL)  // Agregado CascadeType.ALL
     private usuario usuario;
 
-    @ManyToMany(mappedBy = "fotos")
-    private List<album> albumes;
-
-    // Constructor, getters, setters y toString
-    public foto() {}
-
-    public foto(Integer id, String nombre, String descripcion, String imagen, usuario usuario) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.imagen = imagen;
-        this.usuario = usuario;
-    }
-
+    // Getters y setters
     public Integer getId() {
         return id;
     }
@@ -55,12 +49,12 @@ public class foto {
         this.descripcion = descripcion;
     }
 
-    public String getImagen() {
-        return imagen;
+    public List<foto> getFotos() {
+        return fotos;
     }
 
-    public void setImagen(String imagen) {
-        this.imagen = imagen;
+    public void setFotos(List<foto> fotos) {
+        this.fotos = fotos;
     }
 
     public usuario getUsuario() {
@@ -71,21 +65,14 @@ public class foto {
         this.usuario = usuario;
     }
 
-    public List<album> getAlbumes() {
-        return albumes;
-    }
-
-    public void setAlbumes(List<album> albumes) {
-        this.albumes = albumes;
-    }
-
     @Override
     public String toString() {
-        return "foto{" +
+        return "album{" +
                 "id=" + id +
                 ", nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
-                ", imagen='" + imagen + '\'' +
+                ", fotos=" + fotos +
+                ", usuario=" + usuario +
                 '}';
     }
 }

@@ -17,6 +17,9 @@ public class usuario {
     @OneToMany(mappedBy = "usuario")
     private List<foto> fotos;
 
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<album> albumes;
+
     public usuario() {
 
     }
@@ -34,6 +37,14 @@ public class usuario {
 
     public void setFotos(List<foto> fotos) {
         this.fotos = fotos;
+    }
+
+    public List<album> getAlbumes() {
+        return albumes;
+    }
+
+    public void setAlbumes(List<album> albumes) {
+        this.albumes = albumes;
     }
 
     public Integer getId() {

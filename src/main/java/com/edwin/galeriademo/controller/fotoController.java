@@ -71,7 +71,6 @@ public class fotoController {
          return "fotos/edit";
     }
 
-
     @PostMapping("/update")
     public String update(foto foto, @RequestParam("img") MultipartFile file) throws IOException {
         fotoService.update(foto);

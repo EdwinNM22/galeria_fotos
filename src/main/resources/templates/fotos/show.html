@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Spring eCommerce</title>
+  <title>Spring</title>
 
   <!-- Bootstrap core CSS -->
   <link th:href="@{vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet">
@@ -69,7 +69,7 @@
 <body>
 
 <!-- Navigation -->
-<div th:include="administrador/template_admin.html::header"></div>
+<div th:include="adm/template_admin.html::header"></div>
 
 <!-- Page Content -->
 <div class="container">
@@ -85,7 +85,7 @@
   </ol>
 
   <a class="btn btn-primary mb-4" th:href="@{/fotos/create}">Agregar una nueva foto</a>
-  <h2>Productos</h2>
+  <h2>Fotos</h2>
   <div class="card">
     <div class="card-body">
       <table class="table table-striped table-bordered table-hover">
@@ -113,7 +113,7 @@
 <!-- /.container -->
 
 <!-- Footer -->
-<div th:include="administrador/template_admin.html::footer"></div>
+<div th:include="adm/template_admin.html::footer"></div>
 
 <!-- Bootstrap core JavaScript -->
 <script th:src="@{vendor/jquery/jquery.min.js}"></script>

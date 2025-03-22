@@ -54,7 +54,7 @@
 <body>
 
 <!-- Navigation -->
-<div th:include="administrador/template_admin.html::header"></div>
+<div th:include="adm/template_admin.html::header"></div>
 
 <!-- Page Content -->
 <div class="container">
@@ -72,7 +72,7 @@
     <!-- Foto 1 -->
     <div class="col-lg-3 col-md-6 mb-4" th:each="foto: ${fotos}">
       <div class="card h-100">
-        <img class="card-img-top" th:src="@{/images/{img}(img=${foto.imagen})}" alt="foto 1">
+        <img class="card-img-top" th:src="@{/images/{img}(img=${foto.imagen})}" alt="">
         <div class="card-body">
           <p class="card-text" th:text="${foto.nombre}"></p>
         </div>
@@ -89,7 +89,7 @@
 <!-- /.container -->
 
 <!-- Footer -->
-<div th:include="administrador/template_admin.html::footer"></div>
+<div th:include="adm/template_admin.html::footer"></div>
 
 <!-- Bootstrap core JavaScript -->
 <script th:src="@{vendor/jquery/jquery.min.js}"></script>
