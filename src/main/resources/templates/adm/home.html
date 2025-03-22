@@ -69,19 +69,10 @@
   <!-- Page Features -->
   <div class="row text-center">
 
-    <!-- Foto 1 -->
-    <div class="col-lg-3 col-md-6 mb-4" th:each="foto: ${fotos}">
-      <div class="card h-100">
-        <img class="card-img-top" th:src="@{/images/{img}(img=${foto.imagen})}" alt="">
-        <div class="card-body">
-          <p class="card-text" th:text="${foto.nombre}"></p>
-        </div>
-        <div class="card-footer">
-          <a href="fotos.html" class="btn btn-success">Ver foto</a>
-        </div>
-      </div>
+    <div th:each="album : ${albumes}">
+      <h2 th:text="${album.nombre}">Nombre del Álbum</h2>
+      <a th:href="@{/albumes/{id}(id=${album.id})}">Ver Álbum</a>
     </div>
-
   </div>
   <!-- /.row -->
 

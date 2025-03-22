@@ -79,13 +79,5 @@ public class foto {
         this.albumes = albumes;
     }
 
-    @Override
-    public String toString() {
-        return "foto{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", descripcion='" + descripcion + '\'' +
-                ", imagen='" + imagen + '\'' +
-                '}';
-    }
+
 }

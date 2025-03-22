@@ -1,6 +1,7 @@
 package com.edwin.galeriademo.controller;
 
 import com.edwin.galeriademo.model.album;
+import com.edwin.galeriademo.model.usuario;
 import com.edwin.galeriademo.service.albumService;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -21,10 +23,12 @@ public class albumController {
     @Autowired
     private albumService albumService;
 
+
     @GetMapping("")
-    public String show(Model model) {
-        model.addAttribute("albumes", albumService.findAll());
-        return "albumes/show";
+    public String home(Model model) {
+        List<album> albumes = albumService.findAll(); // Obtener todos los álbumes
+        model.addAttribute("albumes", albumes); // Pasar los álbumes al modelo
+        return "adm/home"; // Asegúrate de que esta vista esté configurada para mostrar álbumes
     }
 
     @GetMapping("/create")
@@ -36,10 +40,20 @@ public class albumController {
     public String save(album album) {
         LOGGER.info("Saving album: {}", album);
 
-        // Aquí puedes agregar lógica para asociar un usuario al álbum si es necesario.
         albumService.save(album);
 
         return "redirect:/albumes";
+    }
+
+    @GetMapping("/{id}")
+    public String viewAlbum(@PathVariable Integer id, Model model) {
+        Optional<album> optionalAlbum = albumService.get(id);
+        if (optionalAlbum.isPresent()) {
+            model.addAttribute("album", optionalAlbum.get());
+            return "albumes/albumes"; // Nombre de la vista para mostrar las fotos del álbum
+        } else {
+            return "redirect:/"; // Redirigir a la página de inicio si no se encuentra el álbum
+        }
     }
 
     @GetMapping("/edit/{id}")

@@ -1,6 +1,8 @@
 package com.edwin.galeriademo.controller;
 
 
+import com.edwin.galeriademo.model.album;
+import com.edwin.galeriademo.service.albumService;
 import org.springframework.ui.Model;
 import com.edwin.galeriademo.model.foto;
 import com.edwin.galeriademo.service.fotoService;
@@ -15,15 +17,16 @@ import java.util.List;
 @RequestMapping("/adm")
 public class admController {
 
+
     @Autowired
-    private fotoService fotoService;
+    private albumService albumService;
 
     @GetMapping("")
-    public String home(Model model ) {
-
-        List<foto> fotos = fotoService.findAll();
-        model.addAttribute("fotos", fotos);
-        return "adm/home";
-
+    public String home(Model model) {
+        List<album> albumes = albumService.findAll(); // Obtener todos los álbumes
+        model.addAttribute("albumes", albumes); // Pasar los álbumes al modelo
+        return "adm/home"; // Asegúrate de que esta vista esté configurada para mostrar álbumes
     }
 }
+
+

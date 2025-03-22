@@ -6,9 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 public interface albumService {
-    album save(album album);
-    Optional<album> get(Integer id);
-    void update(album album);
-    void delete(Integer id);
-    List<album> findAll();
+    public album save(album album);
+    public Optional<album> get(Integer id);
+    public void update(album album);
+    public void delete(Integer id);
+    public List<album> findAll();
 }
