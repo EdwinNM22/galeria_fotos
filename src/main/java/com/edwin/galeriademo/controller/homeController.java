@@ -36,7 +36,7 @@ public class homeController {
     @GetMapping("/cerrar")
     public String cerrarSesion(Model model, HttpSession session) {
         session.removeAttribute("idusuario");
-        return "redirect:/";
+        return "redirect:/usuario/login";
 
 
     }

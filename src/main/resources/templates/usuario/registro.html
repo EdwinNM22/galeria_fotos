@@ -73,6 +73,25 @@
     .btn-link:hover {
       background-color: #e7f3fe;
     }
+
+    /* Animaciones */
+    .modal.fade .modal-dialog {
+      transform: translate(0, -50px);
+      transition: transform 0.3s ease-out;
+    }
+
+    .modal.fade.show .modal-dialog {
+      transform: translate(0, 0);
+    }
+
+    .modal-backdrop.fade {
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-backdrop.show {
+      opacity: 0.5;
+    }
   </style>
 </head>
 
@@ -84,7 +103,7 @@
     <div class="card-body">
       <h2 class="text-center mb-4">Regístrate</h2>
 
-      <form th:action="@{usuario/save}" method="post">
+      <form th:action="@{/usuario/save}" method="post" id="registroForm">
         <div class="form-group">
           <label for="nombre">Nombres:</label>
           <input type="text" class="form-control" id="nombre" name="nombre" required placeholder="Ingresa tus nombres" autocomplete="off">
@@ -107,8 +126,26 @@
         <p>¿Ya tienes cuenta? <a th:href="@{/usuario/login}">Inicia sesión</a></p>
       </div>
 
-      <!-- Nuevo botón para volver al login -->
+    </div>
+  </div>
+</div>
 
+<!-- Modal de éxito -->
+<div class="modal fade" tabindex="-1" role="dialog" id="successModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">¡Éxito!</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Tu cuenta ha sido creada con éxito.</p>
+      </div>
+      <div class="modal-footer">
+        <a th:href="@{/usuario/login}" class="btn btn-success">Aceptar</a>
+      </div>
     </div>
   </div>
 </div>
@@ -117,6 +154,21 @@
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  // Muestra el modal de éxito al enviar el formulario
+  document.getElementById('registroForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Verifica si los campos están correctamente llenados
+    if (this.checkValidity()) {
+      $('#successModal').modal('show');
+    } else {
+      // Si hay un error en el formulario, no se muestra el modal
+      this.reportValidity();
+    }
+  });
+</script>
 
 </body>
 

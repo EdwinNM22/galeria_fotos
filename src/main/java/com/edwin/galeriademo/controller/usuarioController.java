@@ -25,11 +25,11 @@ public class usuarioController {
         return "usuario/registro";
     }
 
-    @PostMapping("/usuario/save")
+    @PostMapping("/save")
     public String save(usuario usuario) {
         usuario.setTipo_usuario("USER");
         usuarioService.save(usuario);
-        return "redirect:/";
+        return "redirect:/usuario/login";
     }
 
     @GetMapping("/login")
