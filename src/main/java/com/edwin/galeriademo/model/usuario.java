@@ -11,6 +11,7 @@ public class usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
+    private String email ;
     private String tipo_usuario;
     private String password;
 
@@ -24,27 +25,12 @@ public class usuario {
 
     }
 
-    public usuario(Integer id, String nombre, String tipo_usuario, String password) {
+    public usuario(Integer id, String nombre, String email, String tipo_usuario, String password ) {
         this.id = id;
         this.nombre = nombre;
+        this.email = email;
         this.tipo_usuario = tipo_usuario;
         this.password = password;
-    }
-
-    public List<foto> getFotos() {
-        return fotos;
-    }
-
-    public void setFotos(List<foto> fotos) {
-        this.fotos = fotos;
-    }
-
-    public List<album> getAlbumes() {
-        return albumes;
-    }
-
-    public void setAlbumes(List<album> albumes) {
-        this.albumes = albumes;
     }
 
     public Integer getId() {
@@ -63,11 +49,19 @@ public class usuario {
         this.nombre = nombre;
     }
 
-    public String getTipo() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTipo_usuario() {
         return tipo_usuario;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo_usuario(String tipo_usuario) {
         this.tipo_usuario = tipo_usuario;
     }
 
@@ -79,13 +73,19 @@ public class usuario {
         this.password = password;
     }
 
-    @Override
-    public String toString() {
-        return "usuario{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", tipo='" + tipo_usuario + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public List<foto> getFotos() {
+        return fotos;
+    }
+
+    public void setFotos(List<foto> fotos) {
+        this.fotos = fotos;
+    }
+
+    public List<album> getAlbumes() {
+        return albumes;
+    }
+
+    public void setAlbumes(List<album> albumes) {
+        this.albumes = albumes;
     }
 }

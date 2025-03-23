@@ -51,7 +51,7 @@ public class fotoController {
     public String save(foto foto, @RequestParam("img") MultipartFile file, @RequestParam("album") Integer albumId) throws IOException {
         LOGGER.info("Saving foto: {}", foto);
 
-        usuario u = new usuario(1, "", "", "");
+        usuario u = new usuario(1, "", "", "", "");
         foto.setUsuario(u);
 
         // Obtener el álbum desde la base de datos
