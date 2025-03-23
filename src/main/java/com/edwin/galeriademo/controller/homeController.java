@@ -25,7 +25,19 @@ public class homeController {
     public String home(Model model, HttpSession session) {
         List<album> albumes = albumService.findAll(); // Obtener todos los álbumes
         model.addAttribute("albumes", albumes); // Pasar los álbumes al modelo
+
+        //SESSION
+        model.addAttribute("sesion", session.getAttribute("idusuario"));
+
         return "usuario/home"; // Asegúrate de que esta vista esté configurada para mostrar álbumes
+
+    }
+
+    @GetMapping("/cerrar")
+    public String cerrarSesion(Model model, HttpSession session) {
+        session.removeAttribute("idusuario");
+        return "redirect:/";
+
 
     }
 
