@@ -46,6 +46,22 @@
             border-color: #1e7e34;
         }
 
+        .btn-modern {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: white;
+            font-weight: bold;
+            border-radius: 50px;
+            padding: 10px 20px;
+            font-size: 1.2rem;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-modern:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
         /* Estilo para la imagen expandida */
         .modal-content img {
             width: 100%;
@@ -65,6 +81,10 @@
     <header class="jumbotron my-4">
         <h1 class="display-3" th:text="${album.nombre}">Nombre del Álbum</h1>
         <p class="lead">Disfruta de todas las fotos de este álbum.</p>
+        <!-- Agregar botón "Agregar foto" -->
+        <div class="text-center">
+            <a th:href="@{/fotos/create}" class="btn btn-modern">Agregar foto</a>
+        </div>
     </header>
 
     <!-- Album Photos -->

@@ -33,7 +33,7 @@ public class albumController {
     public String home(Model model) {
         List<album> albumes = albumService.findAll(); // Obtener todos los álbumes
         model.addAttribute("albumes", albumes); // Pasar los álbumes al modelo
-        return "adm/home"; // Asegúrate de que esta vista esté configurada para mostrar álbumes
+        return "albumes/show"; // Asegúrate de que esta vista esté configurada para mostrar álbumes
     }
 
     @GetMapping("/create")
