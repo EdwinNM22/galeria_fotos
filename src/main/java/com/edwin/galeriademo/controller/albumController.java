@@ -2,7 +2,9 @@ package com.edwin.galeriademo.controller;
 
 import com.edwin.galeriademo.model.album;
 import com.edwin.galeriademo.model.usuario;
+import com.edwin.galeriademo.service.UsuarioServiceImpl;
 import com.edwin.galeriademo.service.albumService;
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +25,9 @@ public class albumController {
     @Autowired
     private albumService albumService;
 
+    @Autowired
+    UsuarioServiceImpl usuarioService;
+
 
     @GetMapping("")
     public String home(Model model) {
@@ -37,8 +42,11 @@ public class albumController {
     }
 
     @PostMapping("/save")
-    public String save(album album) {
+    public String save(album album, HttpSession session) {
         LOGGER.info("Saving album: {}", album);
+
+        usuario u = usuarioService.findById(Integer.parseInt(session.getAttribute("idusuario").toString())).get();
+        album.setUsuario(u);
 
         albumService.save(album);
 

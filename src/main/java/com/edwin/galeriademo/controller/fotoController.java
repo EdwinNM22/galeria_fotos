@@ -4,8 +4,10 @@ import com.edwin.galeriademo.model.album;
 import com.edwin.galeriademo.model.foto;
 import com.edwin.galeriademo.model.usuario;
 import com.edwin.galeriademo.service.Uploadfoto;
+import com.edwin.galeriademo.service.UsuarioServiceImpl;
 import com.edwin.galeriademo.service.fotoService;
 import com.edwin.galeriademo.service.albumService;  // Añadir esta importación
+import jakarta.servlet.http.HttpSession;
 import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,6 +32,9 @@ public class fotoController {
     private fotoService fotoService;
 
     @Autowired
+    private UsuarioServiceImpl usuarioService;
+
+    @Autowired
     private Uploadfoto upload;
 
     @Autowired
@@ -48,10 +53,10 @@ public class fotoController {
     }
 
     @PostMapping("/save")
-    public String save(foto foto, @RequestParam("img") MultipartFile file, @RequestParam("album") Integer albumId) throws IOException {
+    public String save(foto foto, @RequestParam("img") MultipartFile file, HttpSession session, @RequestParam("album") Integer albumId) throws IOException {
         LOGGER.info("Saving foto: {}", foto);
 
-        usuario u = new usuario(1, "", "", "", "");
+        usuario u = usuarioService.findById(Integer.parseInt(session.getAttribute("idusuario").toString())).get();
         foto.setUsuario(u);
 
         // Obtener el álbum desde la base de datos
@@ -119,11 +124,18 @@ public class fotoController {
 
         if (optionalFoto.isPresent()) {
             foto p = optionalFoto.get();
-            // eliminar cuando no sea la imagen por defecto
+
+            // Eliminar la foto de todos los álbumes
+            for (album album : p.getAlbumes()) {
+                album.getFotos().remove(p);
+            }
+
+            // Eliminar la imagen del sistema de archivos si no es la imagen por defecto
             if (!p.getImagen().equals("default.jpg")) {
                 upload.deleteImage(p.getImagen());
             }
 
+            // Ahora puedes eliminar la foto
             fotoService.delete(id);
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Foto no encontrada");
